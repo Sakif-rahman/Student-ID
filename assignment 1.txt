@@ -1,0 +1,220 @@
+ /* This is a class to define the necessary attributes and methods to conceptualize a "Student"
+ * The spepcific tasks are:
+ * 1. Instiate 
+ * 
+ * @author SAKIF RAHMAN (1407023) 
+ * @version 1
+ */
+
+
+
+
+import java.util.Scanner;
+import java.util.logging.Formatter;
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+
+
+public class Student {
+	
+	public static Student[] ara = new Student[100];
+
+	int ID;
+	String NAME;
+	String Department;
+	String University;
+	double []GPA= new double[10];
+	String [][]subject=new String [10][20];
+	double [][]credit=new double[10][10];
+	double [][]grade=new double [10][10];
+	int terms,num_subject;
+	
+	
+	
+	
+	
+	
+	
+	public class c
+	{
+		private Formatter x;
+		
+		public void openFile()
+		{
+			try{
+				x=new formetter("stdnt.txt");
+				
+			}
+			catch(Exception e)
+			{
+				System.out.println("error");
+			}
+		}
+		public void addRecords()
+		{
+			x.format("%s","ZARIN");
+		}
+		public void closeFile()
+		{
+			x.close();
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	public Student(){	}
+	
+	
+	
+	public Student(int id,String n,String d,String u){
+	
+		
+		ID=id;
+		NAME=n;
+		Department=d;
+		University=u;
+	}
+	
+	public  void SetInformation(){
+		System.out.print(" ID , NAME , DEPARTMENT , UNIVERSITY TERMS numberofterms subject credets grades===");
+		Scanner info =new Scanner ( System.in );
+		int 
+	
+		
+		ID=info.nextInt();
+		NAME=info.next();
+		Department=info.next();
+		University=info.next();
+		//System.out.println("terms===");
+		terms=info.nextInt();
+		for(int i=0;i<terms;i++)
+		{
+			double sum_grade=0,sum_credit=0;
+			//System.out.println("subject===");
+			num_subject=info.nextInt();
+			
+			for(int j=0;j<num_subject;j++)
+			{
+				//System.out.println("subject credets grades===");
+				subject[i][j]=info.next();
+				
+				credit[i][j]=info.nextDouble();
+				
+				grade[i][j]=info.nextDouble();
+				
+				sum_credit+=credit[i][j];
+				sum_grade+=grade[i][j]*credit[i][j];
+			}
+			
+			GPA[i]=sum_grade/sum_credit;
+		}
+		
+	}
+	
+	
+	
+	
+	
+	public void getInformation(){
+		System.out.print("STUDENT ID IS===   ");
+		System.out.println(ID);
+		System.out.print("   ");
+		System.out.print(NAME);
+		System.out.print("   ");
+		System.out.print(Department);
+		System.out.print("   ");
+		System.out.print(University);
+		System.out.println("   ");	
+		for(int i=0;i<terms;i++)
+		{
+			System.out.print(GPA[i]);
+			System.out.print("   ");
+			
+		}
+		
+		
+		
+		public void print(){
+			System.out.print("STUDENT ID IS===   ");
+			System.out.println(ID);
+			System.out.print("       NAME=====   ");
+			System.out.println(NAME);
+			System.out.print("Department=====   ");
+			System.out.println(Department);
+			System.out.print("University====   ");
+			System.out.println(University);
+			System.out.println("   ");	
+			for(int i=0;i<terms;i++)
+			{
+				System.out.print(GPA[i]);
+				System.out.print("   ");
+			}
+	}
+	
+	
+	
+
+	
+	public static void main(String[] args) {
+		Student st= new Student();
+		System.out.println("ALL OKAY");
+		//Student [] students=new Students [20];
+		/*Student stt=new Student (1407006,"ZARIN","CSE","KUET");
+		stt.getInformation();
+		
+		*/
+		
+		
+		int N;
+		System.out.print("The Number of student ===");
+		Scanner info =new Scanner ( System.in );
+		N=info.nextInt();
+		for(int i=0;i<N;i++)
+		{
+			
+			int id,choice=0;
+			String n;
+			String d;
+			String u;
+			System.out.print("GIVE THE INFORMATION OF ");
+			System.out.print(i+1);
+			System.out.println("  student's INFORMATION ###");
+			System.out.println(" ID ===");
+
+			//System.out.print(" ID , NAME , DEPARTMENT , UNIVERSITY TERMS numberofterms subject credets grades===");
+			id=info.nextInt();
+			System.out.println("NAME ===");
+			n=info.next();
+			System.out.println("Depertment ===");
+			d=info.next();
+			System.out.println("University ===");
+			u=info.next();
+			ara[i]=new Student(id,n,d,u);
+			
+			
+			
+			
+			
+			ara[i].print();
+				
+		}
+		for(int i=0;i<N;i++)
+		{
+			ara[i].print();
+		}
+		
+		System.out.println("ALL OKAY");
+		
+		
+		
+
+	}
+
+}
