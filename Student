@@ -1,0 +1,206 @@
+/**
+ * This is a class to define the necessary attributes and methods to conceptualize a "Student"
+ * The spepcific tasks are:
+ * 1. Instiate 
+ * 
+ * @author SAKIF RAHMAN
+ * @version 3- 10/22/16
+ */
+
+import java.util.Scanner;
+
+public class Student {
+	public static Student[] student=new Student[100];
+	
+	static Scanner input =new Scanner(System.in);
+	
+	int ID;
+	String NAME;
+	String UNIVERSITY;
+	String DEPARTMENT;
+	int TERMS;
+	
+	int[] NUM_SUB=new int[10];
+	double [][] CRADIT=new  double [10][10];	
+	double [][] GRADE=new double [10][10];
+	String [][] SUBJECT= new String[10][10];
+	double [] GPA=new double [10];
+	double  CGPA;
+	
+	public Student (int i,String n,String u,String d)
+	{
+		ID=i;
+		NAME=n;
+		UNIVERSITY=u;
+		DEPARTMENT=d;
+	}
+	
+	public void studentDetailsById()
+    {
+		System.out.println("\n\nID========= "+ ID);
+		System.out.println("NAME======= "+ NAME);
+		System.out.println("UNIVERSITY= "+ UNIVERSITY);
+		System.out.println("DEPARTMENT= "+ DEPARTMENT+ "\n\n\n#######################################################\n");
+    }
+	
+	public void computeGPAByID()
+	{
+		double subc,sumt;
+		System.out.println("Enter Number of terms===");
+		TERMS=input.nextInt();
+		for(int i=0;i<TERMS;i++)
+		{
+			subc=0;
+			sumt=0;
+			System.out.println("Enter Number of TERMS== "+ (i+1)+"  SUBJECTS===");
+			NUM_SUB[i]=input.nextInt();
+			for(int j=0;j<NUM_SUB[i];j++)
+			{
+				System.out.println("Enter the name of "+ (i+1)+ " of SUBJECT NO== "+(j+1)+" Subject is==== ");
+				SUBJECT[i][j]=input.next();
+				System.out.println("Enter the name of "+ (i+1)+ " of SUBJECT NO== "+(j+1)+" SUBJECT'S creade is==== ");
+				CRADIT[i][j]=input.nextDouble();
+				System.out.println("Enter the name of "+ (i+1)+ " of SUBJECT NO== "+(j+1)+" Subject'S GRADES is==== ");
+				GRADE[i][j]=input.nextDouble();
+				subc+=CRADIT[i][j];
+				sumt+=CRADIT[i][j]*GRADE[i][j];
+							
+			}
+			GPA[i]=sumt/subc;
+			
+			System.out.print("\n\nTERMS== "+ (i+1)+ " GET GPA== "+ GPA[i]+ "\n\n");	
+		}
+	}
+	
+	 public void updateStudentById()
+	    {
+			System.out.println("ENTER NAME=======");
+			NAME=input.next();
+			System.out.println("ENTER UNIVERSITY=");
+			UNIVERSITY=input.next();
+			System.out.println("ENTER DEPARTMENT=");
+			DEPARTMENT=input.next();	 
+	    }
+	
+	 public void computeCGPAById()
+	    {
+		 double sum=0;
+		 		for(int i=0;i<TERMS;i++)
+		 		{
+		 			sum+=GPA[i];
+		 		}
+		 		sum=sum/TERMS;
+		 		System.out.println("\n\nID========= "+ ID);
+				System.out.println("NAME======= "+ NAME);
+				System.out.println("\n GET THE CGPA===== "+ sum);
+	    }
+	
+	 public void saveStudents()
+	    {
+		 
+		 System.out.println("ENTER NAME=======");
+			NAME=input.next();
+			System.out.println("ENTER UNIVERSITY=");
+			UNIVERSITY=input.next();
+			System.out.println("ENTER DEPARTMENT=");
+			DEPARTMENT=input.next();
+	        
+	    }
+	 
+	 public void loadStudents()
+	 {
+		 
+
+	 }
+	
+	public static void main(String [] args)
+	{
+		System.out.println("NUMBER OF STUDENT====");
+		
+		int NUM_ST=input.nextInt();
+		System.out.println("NUMBER OF STUDENT===" + NUM_ST);
+		
+		for(int i=0;i<NUM_ST;i++)
+		{
+			int id,choice=0;
+			String n;
+			String u;
+			String d;
+			
+			System.out.println("ENTER ID=========");
+			id=input.nextInt();
+			System.out.println("ENTER NAME=======");
+			n=input.next();
+			System.out.println("ENTER UNIVERSITY=");
+			u=input.next();
+			System.out.println("ENTER DEPARTMENT=");
+			d=input.next();
+			student[id % 100]=new Student(id,n,u,d);
+			
+			System.out.println("\nDO YOU WANT TO COUNT GPA===(press 1,if no press 0)");
+			choice =input.nextInt();
+			if(choice==1)
+			{
+				student[id%100].computeGPAByID();
+			}
+		
+		}
+		
+		int kk=1,k=1;
+		
+		while (k==1)
+		{
+			System.out.println("##################################\nWhat do you want?================");
+			System.out.println("PRESS 1 to Student Details By Id==");
+			System.out.println("PRESS 2 to Update Student By  Id==");
+			System.out.println("PRESS 3 to Compute  GPA By  Id  ==");
+			System.out.println("PRESS 4 to Compute CGPA By  Id  ==");
+			System.out.println("PRESS 0 to EXIT  ###############==");
+			kk =input.nextInt();
+			if(kk==0)
+			{
+				break;
+			}
+			if(kk==1)
+			{
+				System.out.println("Student ID please ====");
+				int idd=input.nextInt();
+				student[idd%100].studentDetailsById();
+				
+			}
+			
+			if(kk==2)
+			{
+				System.out.println("Student ID please ====");
+				int idd=input.nextInt();
+				System.out.println("Student'S Previous Status ====");
+				student[idd%100].studentDetailsById();
+				
+				student[idd%100].updateStudentById();
+				
+				System.out.println("Student'S NEW Status ====");
+				student[idd%100].studentDetailsById();
+				
+			}
+			
+			if(kk==3)
+			{
+				System.out.println("Student ID please ====");
+				int idd=input.nextInt();
+				student[idd%100].studentDetailsById();
+				
+				student[idd%100].computeGPAByID();
+				
+			}
+			if(kk==4)
+			{
+				System.out.println("Student ID please ====");
+				int idd=input.nextInt();
+				student[idd%100].studentDetailsById();
+				
+				student[idd%100].computeCGPAById();
+				
+			}	
+		}	
+	}
+}
