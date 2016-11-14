@@ -1,0 +1,155 @@
+public class TestClass
+{
+
+ ComplexNumber[] c=new ComplexNumber[10];
+ ComplexNumber[] Q;
+ public int i=0,upperpointer,lowerpointer;
+ 
+ public TestClass(){
+     Q=new ComplexNumber[100];
+     upperpointer=0;
+     lowerpointer=0;
+     
+    }
+    
+    
+    public TestClass(int size){
+     Q=new ComplexNumber[size];
+     upperpointer=0;
+     lowerpointer=0;
+     
+    }
+ 
+ 
+ 
+ 
+ public void Push(double  a,double b)
+ {
+     i++;
+      c[i]=new ComplexNumber(a,b);
+       c[i].printComplexNumber();
+     
+     
+     
+     
+    }
+    
+    public void add(ComplexNumber Z)
+    {
+        Q[upperpointer]=Z;
+       upperpointer++;
+        
+    }
+        
+    
+    public void remove()
+    {
+      
+       lowerpointer++;
+        
+    }
+     public void show()
+    {
+        for(int i=lowerpointer;i<upperpointer;i++)
+        {
+            Q[i].printComplexNumber();
+        }
+        
+    }
+    
+    
+    public static void main(String[] args)
+   {
+       TestClass T=new TestClass();
+       
+      
+       
+    }
+
+
+
+}
+
+
+import java.lang.Math.*;
+
+public class ComplexNumber{
+    
+    private double real;
+    private double img;
+    
+    private double mag;
+    private double theta;
+    
+    public ComplexNumber(){}
+    
+    public ComplexNumber(double a,double b)
+    {
+        real=a;
+        img=b;
+        mag=Math.sqrt(real*real+img*img);
+        theta=Math.toDegrees(Math.atan(img/real));
+    }
+    
+    public double magnitute()
+    {
+        
+        return Math.sqrt(real*real+img*img);
+        
+    }
+    public double argument()
+    {
+        return Math.toDegrees(Math.atan(img/real));
+        
+        
+    }
+    
+    public void printComplexNumber()
+    {
+        System.out.println(real+ "+"+img + "i\n");
+         System.out.println("Magnitute=== "+mag + "  Argument== "+theta);
+    }
+    
+    public ComplexNumber add(ComplexNumber z)
+    {
+        return new ComplexNumber(real+z.real,img+z.img);
+        
+        
+        
+    }
+    public ComplexNumber sub(ComplexNumber z)
+    {
+        return new ComplexNumber(real-z.real,img-z.img);
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+
+
+   public static void main(String[] args)
+   {
+       ComplexNumber c1=new ComplexNumber(12.0,10.50);
+       ComplexNumber c2=new ComplexNumber(15.5,10.50);
+       ComplexNumber c3=new ComplexNumber(12.0,10.50);
+     //  c1.printComplexNumber();
+       
+    //   System.out.println(c1.magnitute());
+      // System.out.println(c1.argument());
+       
+      // System.out.println(1c.magnitute());
+      
+      ComplexNumber R1=c1.add(c2);
+      ComplexNumber R2=c1.sub(c2);
+      
+       R1.printComplexNumber();
+       R2.printComplexNumber();
+       
+    }
+
+}
