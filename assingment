@@ -1,0 +1,84 @@
+public class CQ{
+
+
+
+
+
+
+ ComplexNumber[] c=new ComplexNumber[10];
+ public int i=0;
+ 
+ 
+ ComplexNumber z1,z2,z3;
+ 
+ 
+ 
+ 
+ 
+ 
+ public void QQ(int a,int b)
+ {
+     
+    ComplexNumber c1=new ComplexNumber(12.0,10.50);
+       ComplexNumber c2=new ComplexNumber(15.5,10.50);
+       ComplexNumber c3=new ComplexNumber(12.0,10.50);
+     
+     
+     
+    }
+ 
+ 
+ 
+ 
+ public void Push(int a,int b)
+ {
+     i++;
+      c[i]=new ComplexNumber(a,b);
+
+      
+       R.printComplexNumber();
+     
+     
+     
+     
+    }
+    public static void main(String[] args)
+   {
+       CQ T=new CQ();
+       
+       T.Push();
+       
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
